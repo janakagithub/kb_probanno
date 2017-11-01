@@ -127,21 +127,21 @@ sub runProbAnno
     #BEGIN runProbAnno
 
 
-    system ("/kb/dev_container/modules/ProbAnno-Standalone scripts/ms-probanno-standalone.py genomes/1415167.3.PATRIC.faa templates/GramNegative.json /kb/module/work/tmp/1415167.3.probanno.out");
+    system ("/kb/dev_container/modules/ProbAnno-Standalone/scripts/ms-probanno-standalone.py /kb/dev_container/modules/ProbAnno-Standalone/genomes/1415167.3.PATRIC.faa /kb/dev_container/modules/ProbAnno-Standalone/templates/GramNegative.json /kb/module/work/tmp/1415167_3_probanno.out");
 
 
-    my $reporter_string = "ProbAnno output created and stored in /kb/module/work/tmp/1415167.3.probanno.out";
+    my $reporter_string = "ProbAnno output created and stored in /kb/module/work/tmp/1415167_3_probanno.out";
 
     print "$reporter_string\n";
 
     my $reportHandle = new KBaseReport::KBaseReportClient( $self->{'callbackURL'},
-                                                            ( 'service_version' => 'dev',
-                                                              'async_version' => 'dev',
+                                                            ( 'service_version' => 'release',
+                                                              'async_version' => 'release',
                                                             )
                                                           );
 
     my $file_path1= {
-        path => '/kb/module/work/tmp/1415167.3.probanno.out',
+        path => '/kb/module/work/tmp/1415167_3_probanno.out',
         name => 'probanno_outputFile',
         description => 'probanno_outputFile'
     };
