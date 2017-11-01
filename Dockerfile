@@ -62,8 +62,8 @@ COPY /data/usearch10.0.240_i86linux32 /kb/dev_container/modules/ProbAnno-Standal
 
 RUN chmod 777 /kb/dev_container/modules/ProbAnno-Standalone/usearch10.0.240_i86linux32 && \
     cd /kb/dev_container/modules/ProbAnno-Standalone/data && \
-    curl -o PROTEIN.udb http://bioseed.mcs.anl.gov/~janakae/ProbAnnoData/PROTEIN.udb
-    #curl -o OTU_FID_ROLE http://bioseed.mcs.anl.gov/~janakae/ProbAnnoData/OTU_FID_ROLE
+    curl -o PROTEIN.udb http://bioseed.mcs.anl.gov/~janakae/ProbAnnoData/PROTEIN.udb && \
+    curl -o OTU_FID_ROLE http://bioseed.mcs.anl.gov/~janakae/ProbAnnoData/OTU_FID_ROLE
 
 
 
