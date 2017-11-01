@@ -1,0 +1,41 @@
+#
+# define display information
+#
+name: Probabilistic annotation
+tooltip: |
+    Probabilistic annotation for metabolic modeling
+screenshots: []
+
+icon: null
+
+#
+# define a set of similar methods that might be useful to the user
+#
+suggestions:
+    apps:
+        related:
+            []
+        next:
+            []
+    methods:
+        related:
+            []
+        next:
+            [annotate_contigset]
+
+#
+# Configure the display and description of parameters
+#
+parameters :
+    genome_ref :
+        ui-name : |
+            Genome Name
+        short-hint : |
+            Genome Name
+    template_id :
+        ui-name : |
+            Template type
+        short-hint : |
+            Template type
+description : |
+    <p>Probabilistic annotation for metabolic modeling.</p>
