@@ -32,10 +32,15 @@ sub get_ws_name {
 }
 
 
+my $probAnnoInput = {
+    wsname => 'janaka'
 
 
 
+};
 
+
+my $func_out = $impl->runProbAnno($probAnnoInput);
 
 
 my $err = undef;

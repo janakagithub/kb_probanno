@@ -19,44 +19,44 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Generated("com.googlecode.jsonschema2pojo")
 @JsonPropertyOrder({
-    "probAnno_outputFile",
-    "model_ref"
+    "report_name",
+    "report_ref"
 })
 public class ProbAnnoOutputPrams {
 
-    @JsonProperty("probAnno_outputFile")
-    private String probAnnoOutputFile;
-    @JsonProperty("model_ref")
-    private String modelRef;
+    @JsonProperty("report_name")
+    private String reportName;
+    @JsonProperty("report_ref")
+    private String reportRef;
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
-    @JsonProperty("probAnno_outputFile")
-    public String getProbAnnoOutputFile() {
-        return probAnnoOutputFile;
+    @JsonProperty("report_name")
+    public String getReportName() {
+        return reportName;
     }
 
-    @JsonProperty("probAnno_outputFile")
-    public void setProbAnnoOutputFile(String probAnnoOutputFile) {
-        this.probAnnoOutputFile = probAnnoOutputFile;
+    @JsonProperty("report_name")
+    public void setReportName(String reportName) {
+        this.reportName = reportName;
     }
 
-    public ProbAnnoOutputPrams withProbAnnoOutputFile(String probAnnoOutputFile) {
-        this.probAnnoOutputFile = probAnnoOutputFile;
+    public ProbAnnoOutputPrams withReportName(String reportName) {
+        this.reportName = reportName;
         return this;
     }
 
-    @JsonProperty("model_ref")
-    public String getModelRef() {
-        return modelRef;
+    @JsonProperty("report_ref")
+    public String getReportRef() {
+        return reportRef;
     }
 
-    @JsonProperty("model_ref")
-    public void setModelRef(String modelRef) {
-        this.modelRef = modelRef;
+    @JsonProperty("report_ref")
+    public void setReportRef(String reportRef) {
+        this.reportRef = reportRef;
     }
 
-    public ProbAnnoOutputPrams withModelRef(String modelRef) {
-        this.modelRef = modelRef;
+    public ProbAnnoOutputPrams withReportRef(String reportRef) {
+        this.reportRef = reportRef;
         return this;
     }
 
@@ -72,7 +72,7 @@ public class ProbAnnoOutputPrams {
 
     @Override
     public String toString() {
-        return ((((((("ProbAnnoOutputPrams"+" [probAnnoOutputFile=")+ probAnnoOutputFile)+", modelRef=")+ modelRef)+", additionalProperties=")+ additionalProperties)+"]");
+        return ((((((("ProbAnnoOutputPrams"+" [reportName=")+ reportName)+", reportRef=")+ reportRef)+", additionalProperties=")+ additionalProperties)+"]");
     }
 
 }

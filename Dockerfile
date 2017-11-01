@@ -12,6 +12,7 @@ MAINTAINER KBase Developer
 RUN cpanm -i Config::IniFiles
 # download a sequence IO module
 RUN cpanm -i Bio::SeqIO
+RUN cpanm -i UUID::Random
 
 RUN apt-get -y install nano
 # -----------------------------------------

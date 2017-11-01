@@ -2,10 +2,10 @@ package kb_probanno::kb_probannoImpl;
 use strict;
 use Bio::KBase::Exceptions;
 # Use Semantic Versioning (2.0.0-rc.1)
-# http://semver.org 
+# http://semver.org
 our $VERSION = '0.0.1';
-our $GIT_URL = '';
-our $GIT_COMMIT_HASH = '';
+our $GIT_URL = 'https://github.com/janakagithub/kb_probanno.git';
+our $GIT_COMMIT_HASH = '35d83c6a73ac32c602395697797562896590144a';
 
 =head1 NAME
 
@@ -24,6 +24,7 @@ use AssemblyUtil::AssemblyUtilClient;
 use KBaseReport::KBaseReportClient;
 use Config::IniFiles;
 use Bio::SeqIO;
+use UUID::Random;
 use Data::Dumper;
 #END_HEADER
 
@@ -34,15 +35,15 @@ sub new
     };
     bless $self, $class;
     #BEGIN_CONSTRUCTOR
-    
+
     my $config_file = $ENV{ KB_DEPLOYMENT_CONFIG };
     my $cfg = Config::IniFiles->new(-file=>$config_file);
     my $scratch = $cfg->val('kb_probanno', 'scratch');
     my $callbackURL = $ENV{ SDK_CALLBACK_URL };
-    
+
     $self->{scratch} = $scratch;
     $self->{callbackURL} = $callbackURL;
-    
+
     #END_CONSTRUCTOR
 
     if ($self->can('_init_instance'))
@@ -75,8 +76,8 @@ probAnnoInputParams is a reference to a hash where the following keys are define
 	template_id has a value which is a string
 	workspace has a value which is a string
 probAnnoOutputPrams is a reference to a hash where the following keys are defined:
-	probAnno_outputFile has a value which is a string
-	model_ref has a value which is a string
+	report_name has a value which is a string
+	report_ref has a value which is a string
 
 </pre>
 
@@ -92,8 +93,8 @@ probAnnoInputParams is a reference to a hash where the following keys are define
 	template_id has a value which is a string
 	workspace has a value which is a string
 probAnnoOutputPrams is a reference to a hash where the following keys are defined:
-	probAnno_outputFile has a value which is a string
-	model_ref has a value which is a string
+	report_name has a value which is a string
+	report_ref has a value which is a string
 
 
 =end text
@@ -124,6 +125,61 @@ sub runProbAnno
     my $ctx = $kb_probanno::kb_probannoServer::CallContext;
     my($output);
     #BEGIN runProbAnno
+
+
+    system ("/kb/dev_container/modules/ProbAnno-Standalone scripts/ms-probanno-standalone.py genomes/1415167.3.PATRIC.faa templates/GramNegative.json /kb/module/work/tmp/1415167.3.probanno.out");
+
+
+    my $reporter_string = "ProbAnno output created and stored in /kb/module/work/tmp/1415167.3.probanno.out";
+
+    print "$reporter_string\n";
+
+    my $reportHandle = new KBaseReport::KBaseReportClient( $self->{'callbackURL'},
+                                                            ( 'service_version' => 'dev',
+                                                              'async_version' => 'dev',
+                                                            )
+                                                          );
+
+    my $file_path1= {
+        path => '/kb/module/work/tmp/1415167.3.probanno.out',
+        name => 'probanno_outputFile',
+        description => 'probanno_outputFile'
+    };
+
+    my $uid = UUID::Random::generate;
+    my $report_context = {
+      message => $reporter_string,
+      objects_created => [],
+      workspace_name => 'janakakbase:narrative_1509540289573',
+      warnings => [],
+      html_links => [],
+      file_links =>[$file_path1],
+      report_object_name => "Report"."ProbAnnoOutput"."-".UUID::Random::generate
+    };
+
+    my $report_response;
+    eval {
+      $report_response = $reportHandle->create_extended_report($report_context);
+    };
+    if ($@){
+      print "Exception message: " . $@->{"message"} . "\n";
+      print "JSONRPC code: " . $@->{"code"} . "\n";
+      print "Method: " . $@->{"method_name"} . "\n";
+      print "Client-side exception:\n";
+      print $@;
+      print "Server-side exception:\n";
+      print $@->{"data"};
+      die $@;
+    }
+
+    print "Report is generated: name and the ref as follows\n";
+    print &Dumper ($report_response);
+     my $report_out = {
+      report_name => $report_response->{name},
+      report_ref => $report_response->{ref}
+    };
+    return $report_out;
+
     #END runProbAnno
     my @_bad_returns;
     (ref($output) eq 'HASH') or push(@_bad_returns, "Invalid type for return variable \"output\" (value was \"$output\")");
@@ -138,7 +194,7 @@ sub runProbAnno
 
 
 
-=head2 status 
+=head2 status
 
   $return = $obj->status()
 
@@ -229,8 +285,8 @@ workspace has a value which is a string
 
 <pre>
 a reference to a hash where the following keys are defined:
-probAnno_outputFile has a value which is a string
-model_ref has a value which is a string
+report_name has a value which is a string
+report_ref has a value which is a string
 
 </pre>
 
@@ -239,8 +295,8 @@ model_ref has a value which is a string
 =begin text
 
 a reference to a hash where the following keys are defined:
-probAnno_outputFile has a value which is a string
-model_ref has a value which is a string
+report_name has a value which is a string
+report_ref has a value which is a string
 
 
 =end text

@@ -40,8 +40,7 @@ class kb_probanno(object):
            String, parameter "template_id" of String, parameter "workspace"
            of String
         :returns: instance of type "probAnnoOutputPrams" -> structure:
-           parameter "probAnno_outputFile" of String, parameter "model_ref"
-           of String
+           parameter "report_name" of String, parameter "report_ref" of String
         """
         return self._client.call_method(
             'kb_probanno.runProbAnno',

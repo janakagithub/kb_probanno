@@ -12,10 +12,12 @@ module kb_probanno {
         string workspace;
     } probAnnoInputParams;
 
-	typedef structure {
-		string probAnno_outputFile;
-		string model_ref;
-	} probAnnoOutputPrams;
+
+
+	   typedef structure {
+        string report_name;
+        string report_ref;
+	 }probAnnoOutputPrams;
 
     funcdef runProbAnno(probAnnoInputParams params)
         returns (probAnnoOutputPrams output) authentication required;

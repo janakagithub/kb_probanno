@@ -128,8 +128,8 @@ probAnnoInputParams is a reference to a hash where the following keys are define
 	template_id has a value which is a string
 	workspace has a value which is a string
 probAnnoOutputPrams is a reference to a hash where the following keys are defined:
-	probAnno_outputFile has a value which is a string
-	model_ref has a value which is a string
+	report_name has a value which is a string
+	report_ref has a value which is a string
 
 </pre>
 
@@ -145,8 +145,8 @@ probAnnoInputParams is a reference to a hash where the following keys are define
 	template_id has a value which is a string
 	workspace has a value which is a string
 probAnnoOutputPrams is a reference to a hash where the following keys are defined:
-	probAnno_outputFile has a value which is a string
-	model_ref has a value which is a string
+	report_name has a value which is a string
+	report_ref has a value which is a string
 
 
 =end text
@@ -342,8 +342,8 @@ workspace has a value which is a string
 
 <pre>
 a reference to a hash where the following keys are defined:
-probAnno_outputFile has a value which is a string
-model_ref has a value which is a string
+report_name has a value which is a string
+report_ref has a value which is a string
 
 </pre>
 
@@ -352,8 +352,8 @@ model_ref has a value which is a string
 =begin text
 
 a reference to a hash where the following keys are defined:
-probAnno_outputFile has a value which is a string
-model_ref has a value which is a string
+report_name has a value which is a string
+report_ref has a value which is a string
 
 
 =end text
