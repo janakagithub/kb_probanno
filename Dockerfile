@@ -40,7 +40,9 @@ RUN cd /kb/dev_container/modules && \
     cd ProbAnno-Standalone && \
 
     echo 'export PATH=/kb/dev_container/modules/ProbAnno-Standalone:$PATH' >> /kb/dev_container/modules/ProbAnno-Standalone/deploy.cfg && \
-    echo 'data_dir=/kb/dev_container/modules/ProbAnno-Standalone/data' >> /kb/dev_container/modules/ProbAnno-Standalone/deploy.cfg && \
+    #echo 'data_dir=/kb/dev_container/modules/ProbAnno-Standalone/data' >> /kb/dev_container/modules/ProbAnno-Standalone/deploy.cfg && \
+    echo 'data_dir=/data/rdata' >> /kb/dev_container/modules/ProbAnno-Standalone/deploy.cfg && \
+
 
   	sed -i "s|search_program_path=/local/local_webservices/probanno/ProbAnno-Standalone/bin/usearch|search_program_path=/kb/dev_container/modules/ProbAnno-Standalone/usearch10.0.240_i86linux32|g" /kb/dev_container/modules/ProbAnno-Standalone/deploy.cfg && \
 
@@ -49,6 +51,8 @@ RUN cd /kb/dev_container/modules && \
   	sed -i "s|work_dir=/local/local_webservices/probanno/tmp|work_dir=/kb/module/work/tmp |g" /kb/dev_container/modules/ProbAnno-Standalone/deploy.cfg
 
 
+#RUN mkdir /data && \
+ #   mkdir /data/rdata
 
 COPY ./ /kb/module
 
@@ -59,12 +63,17 @@ RUN chmod -R a+rw /kb/module
 WORKDIR /kb/module
 
 RUN make all
-COPY /data/usearch10.0.240_i86linux32 /kb/dev_container/modules/ProbAnno-Standalone
+#COPY /data/rdata/usearch10.0.240_i86linux32 /kb/dev_container/modules/ProbAnno-Standalone
 
-RUN chmod 777 /kb/dev_container/modules/ProbAnno-Standalone/usearch10.0.240_i86linux32 && \
-    cd /kb/dev_container/modules/ProbAnno-Standalone/data && \
-    curl -o PROTEIN.udb http://bioseed.mcs.anl.gov/~janakae/ProbAnnoData/PROTEIN.udb && \
-    curl -o OTU_FID_ROLE http://bioseed.mcs.anl.gov/~janakae/ProbAnnoData/OTU_FID_ROLE
+#RUN chmod 777 /kb/dev_container/modules/ProbAnno-Standalone/usearch10.0.240_i86linux32
+
+
+
+
+
+    #cd /kb/dev_container/modules/ProbAnno-Standalone/data && \
+    #curl -o PROTEIN.udb http://bioseed.mcs.anl.gov/~janakae/ProbAnnoData/PROTEIN.udb && \
+    #curl -o OTU_FID_ROLE http://bioseed.mcs.anl.gov/~janakae/ProbAnnoData/OTU_FID_ROLE
 
 
 

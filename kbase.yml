@@ -13,3 +13,5 @@ module-version:
 owners:
     [janakakbase]
 
+data-version:
+    1.0

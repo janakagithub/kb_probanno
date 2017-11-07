@@ -5,7 +5,7 @@ use Bio::KBase::Exceptions;
 # http://semver.org
 our $VERSION = '0.0.1';
 our $GIT_URL = 'https://github.com/janakagithub/kb_probanno.git';
-our $GIT_COMMIT_HASH = '35d83c6a73ac32c602395697797562896590144a';
+our $GIT_COMMIT_HASH = '576f2bebdc8ed4d1390b822dca7db6fabf8fc6cd';
 
 =head1 NAME
 
@@ -127,8 +127,9 @@ sub runProbAnno
     #BEGIN runProbAnno
 
 
-    system ("/kb/dev_container/modules/ProbAnno-Standalone/scripts/ms-probanno-standalone.py /kb/dev_container/modules/ProbAnno-Standalone/genomes/1415167.3.PATRIC.faa /kb/dev_container/modules/ProbAnno-Standalone/templates/GramNegative.json /kb/module/work/tmp/1415167_3_probanno.out");
+    #system ("/kb/dev_container/modules/ProbAnno-Standalone/scripts/ms-probanno-standalone.py /kb/dev_container/modules/ProbAnno-Standalone/genomes/1415167.3.PATRIC.faa /kb/dev_container/modules/ProbAnno-Standalone/templates/GramNegative.json /kb/module/work/tmp/1415167_3_probanno.out");
 
+    system ("/kb/dev_container/modules/ProbAnno-Standalone/scripts/ms-probanno-standalone.py /kb/dev_container/modules/ProbAnno-Standalone/genomes/1415167.3.PATRIC.faa /kb/dev_container/modules/ProbAnno-Standalone/templates/GramNegative.json /kb/module/work/tmp/1415167_3_probanno.out");
 
     my $reporter_string = "ProbAnno output created and stored in /kb/module/work/tmp/1415167_3_probanno.out";
 
